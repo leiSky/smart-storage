@@ -111,11 +111,16 @@ console.log(draft?.title);
 - `setItems(items)`：批量写入
 - `getKeys(keys)`：批量读取
 - `removeKeys(keys)`：批量删除
+- `close()`：释放当前实例持有的共享资源；当实例生命周期明确结束时，推荐显式调用
 
 `SessionSmartStorage` 额外提供：
 
 - `cleanupExpiredSessions(ttlMs?)`：清理过期会话及其挂载数据
-- `close()`：释放共享会话运行时和数据库引用
+
+其中：
+
+- `LocalSmartStorage.close()` 会释放当前实例持有的共享 IndexedDB 引用
+- `SessionSmartStorage.close()` 除了释放共享 IndexedDB 引用，还会释放会话 runtime 和可能存在的心跳定时器
 
 ## 返回值与类型
 

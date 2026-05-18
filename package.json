@@ -1,0 +1,49 @@
+{
+  "name": "smart-storage",
+  "version": "1.0.0",
+  "description": "Browser storage utilities that route small values to Web Storage and large values to IndexedDB.",
+  "type": "module",
+  "main": "./dist/entry/index.js",
+  "module": "./dist/entry/index.js",
+  "types": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "browser-storage",
+    "indexeddb",
+    "localstorage",
+    "sessionstorage",
+    "storage"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/entry/index.js"
+    },
+    "./local": {
+      "types": "./dist/types/localSmartStorage.d.ts",
+      "import": "./dist/entry/localSmartStorage.js"
+    },
+    "./session": {
+      "types": "./dist/types/sessionSmartStorage.d.ts",
+      "import": "./dist/entry/sessionSmartStorage.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "check": "npm run build && npm test",
+    "prepublishOnly": "npm run check",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.0.0",
+    "jsdom": "^24.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}

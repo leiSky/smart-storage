@@ -1,0 +1,19 @@
+README.md
+  s_9d08242794e2d1::t_265d182e0b67fd 114,119-123
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "7c3c1aa63ee2c54eb2637e3b7d8808eefee6dfb7",
+  "prompts": {},
+  "sessions": {
+    "s_9d08242794e2d1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e3910-be8d-7043-b078-06ce8b29c3fc",
+        "model": "gpt-5.4"
+      },
+      "human_author": "leixt <leixuetian@tongbaninfo.com>"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.gitignore
+  h_a49e14c4d39c8e 1-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "771ea31cb42c1a0604ff7b6b95a57a5de66fd19d",
+  "prompts": {},
+  "humans": {
+    "h_a49e14c4d39c8e": {
+      "author": "leixt <leixuetian@tongbaninfo.com>"
+    }
+  }
+}

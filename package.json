@@ -1,6 +1,6 @@
 {
   "name": "smart-storage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browser storage utilities that route small values to Web Storage and large values to IndexedDB.",
   "type": "module",
   "main": "./dist/entry/index.js",

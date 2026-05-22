@@ -264,7 +264,20 @@ microtask 会调用 `syncEntryToStorage()`：
 
 如果当前在响应式 scope 中，`dispose()` 会在 `onScopeDispose()` 中自动触发。
 
-如果不在 scope 中使用，就需要手动调用 `dispose()`。
+这里依赖的是 `@vue/reactivity` 的 scope 机制，而不是完整 Vue 组件环境本身。
+
+也就是说：
+
+- 在 Vue `setup()` 或 composable 中，通常天然存在活跃 scope
+- 在普通 JS 中，只要外层是 `effectScope().run(...)`，同样会有活跃 scope
+- 如果只是普通函数直接调用，没有活跃 scope，则 `getCurrentScope()` 会拿到空值，`onScopeDispose()` 不会生效
+
+因此非 scope 场景下，需要手动调用 `dispose()`。
+
+这个设计的目标是：
+
+- 有 scope 时，交给宿主自动托管
+- 没 scope 时，仍然允许作为通用 reactivity hook 独立使用
 
 ## 错误语义
 

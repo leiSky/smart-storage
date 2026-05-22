@@ -157,13 +157,62 @@ const { state, refresh } = useSessionStorage({
 
 ## 生命周期
 
+这里依赖的不是完整 Vue 运行时，而是 `@vue/reactivity` 的 effect scope 机制。
+
+也就是说，关键不在于“是不是 Vue 环境”，而在于：
+
+- 当前是否存在活跃的响应式 scope
+
+内部逻辑是：
+
+- `getCurrentScope()` 用来判断当前是否处在活跃 scope 中
+- 如果有，`onScopeDispose()` 会把当前 hook 的 `dispose()` 注册到这个 scope 的销毁回调里
+- 如果没有，就不会自动注册清理逻辑
+
 如果在活跃的响应式 scope 中使用：
 
 - hook 会在 scope dispose 时自动释放消费者引用
 
+典型场景：
+
+- Vue 组件 `setup()`
+- Vue composable 被 `setup()` 调用
+- 手动通过 `effectScope().run(...)` 包起来的普通 JS 逻辑
+
 如果不在 scope 中使用：
 
 - 需要手动调用 `dispose()`
+
+例如普通 JS 中直接调用：
+
+```ts
+const result = useReactiveStorage({
+  key: 'draft',
+  storage,
+  initialValue: '',
+});
+
+// 不再使用时手动释放
+result.dispose();
+```
+
+如果你希望在非 Vue 组件场景下也自动释放，可以自己创建 scope：
+
+```ts
+import { effectScope } from '@vue/reactivity';
+
+const scope = effectScope();
+
+const result = scope.run(() => useReactiveStorage({
+  key: 'draft',
+  storage,
+  initialValue: '',
+}));
+
+scope.stop();
+```
+
+调用 `scope.stop()` 后，内部注册的 `onScopeDispose()` 会自动触发，最终释放当前消费者引用。
 
 `dispose()` 的语义是“释放当前消费者”，不是强制销毁整个共享条目。只有最后一个消费者离开时，共享 watcher 和 registry 条目才会被回收。
 

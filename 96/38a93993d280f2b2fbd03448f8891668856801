@@ -1,0 +1,19 @@
+package.json
+  s_b590b8352d2d49::t_ae66bda7aa9f7e 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.0",
+  "base_commit_sha": "9638a93993d280f2b2fbd03448f8891668856801",
+  "prompts": {},
+  "sessions": {
+    "s_b590b8352d2d49": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4953-ccce-7c61-90ab-b8bc62193487",
+        "model": "gpt-5.4"
+      },
+      "human_author": "leixt <leixuetian@tongbaninfo.com>"
+    }
+  }
+}

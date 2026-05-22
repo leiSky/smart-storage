@@ -31,6 +31,8 @@ function runTsupBuild() {
       tsupCli,
       '--entry.index',
       'src/index.ts',
+      '--entry.hook',
+      'src/hook/index.ts',
       '--entry.localSmartStorage',
       'src/local/localSmartStorage.ts',
       '--entry.sessionSmartStorage',

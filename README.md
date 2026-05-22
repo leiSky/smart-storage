@@ -38,6 +38,22 @@ import LocalSmartStorage from 'smart-storage/local';
 import SessionSmartStorage from 'smart-storage/session';
 ```
 
+响应式 hook 说明见：
+
+- [src/hook/README.md](./src/hook/README.md)
+- [src/hook/DESIGN.md](./src/hook/DESIGN.md)
+
+存储层设计说明见：
+
+- [src/local/DESIGN.md](./src/local/DESIGN.md)
+- [src/session/DESIGN.md](./src/session/DESIGN.md)
+
+如果你需要通用响应式 hook，可以从子入口导入：
+
+```ts
+import { useReactiveStorage } from 'smart-storage/hook';
+```
+
 ## 快速开始
 
 ### 本地持久存储
@@ -83,6 +99,17 @@ console.log(draft?.title);
 ```
 
 会话数据会按当前标签页的 `sessionId` 隔离；超过 `sessionTTL` 且未续租的会话，可以通过 `cleanupExpiredSessions()` 清理。
+
+### 默认响应式 hook
+
+```ts
+import {
+  useLocalStorage,
+  useSessionStorage,
+} from 'smart-storage';
+```
+
+更多 hook 细节、共享语义和生命周期说明，见 [src/hook/README.md](./src/hook/README.md)。
 
 ## 配置项
 
